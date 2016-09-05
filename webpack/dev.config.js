@@ -40,12 +40,18 @@ module.exports = {
     }, {
       test: /\.scss$/,
       loader: 'css?localIdentName=[path]!postcss-loader!sass',
+    }, {
+      test: /\.(jpe?g|png|gif|svg)$/i,
+      loaders: [
+        'file?hash=sha512&digest=hex&name=[hash].[ext]',
+        'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false',
+      ],
     }],
   },
 
   postcss: function() {
     return [autoprefixer({
-      browsers: ['last 2 versions', 'safari 5', 'ie 9', 'ios 6', 'android 4']
+      browsers: ['last 2 versions', 'safari 5', 'ie 9', 'ios 6', 'android 4'],
     }), csswring];
   },
 };
